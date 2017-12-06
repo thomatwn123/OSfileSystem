@@ -1,0 +1,59 @@
+____  ____    _____ _  _     _____   ____ ___  _ ____  _____  _____ _     
+/  _ \/ ___\  /    // \/ \   /  __/  / ___\\  \/// ___\/__ __\/  __// \__/|
+| / \||    \  |  __\| || |   |  \    |    \ \  / |    \  / \  |  \  | |\/||
+| \_/|\___ |  | |   | || |_/\|  /_   \___ | / /  \___ |  | |  |  /_ | |  ||
+\____/\____/  \_/   \_/\____/\____\  \____//_/   \____/  \_/  \____\\_/  \|
+                                                                           
+OS Final Project Readme v1 (12/6/2017)
+======================================
+
+# Current work division:
+	- Tim		: (fs.c, header.h) Main driver program, UI, Header file, documentation
+	- Kohila	: (ls.h) List file
+	- Susanta	: (rm.h) Delete file
+	- San		: (mv.h) Rename/move file, git repository
+	- MSG		: (touch.h) Create file
+	- Neil		: (cat.h) Show file content
+	
+# Git repository:
+	- Link: https://github.com/git4san/OSfilesystem
+	- Working branch: master
+	
+# Notes:
+	- Remember to sign up for a git account, and then send San your email and username, so that he can add you to the repository (for push and pull to teh repo).
+
+# How to work your part in the project:
+	- Everyone is responsible for the assigned task as listed above.
+	- Everyone will do:
+		1. Upload only a single file (e.g.: ls.h for Kohila, rm.h for Susanta, etc.).
+		2. You will create a function with the following name:
+			> Kohila	: ls
+			> Susanta	: rm
+			> San		: mv
+			> MSG		: touch
+			> Neil		: cat
+		3. Your code will look something like this:
+			// (ls.h) List file
+			#ifndef ls_h
+			#define ls_h
+			
+			#include <stdio.h>
+			// include needed library here
+			
+			// Type in the comment about how to use your function, what to give as input and how to retrieve the output
+			void lsFunc(/*Replace with your own input/output variable here*/){
+				/*Replace with your working code*/
+			}
+			
+			#endif
+		4. So in the end we will have this functions:
+			> lsFunc, rmFunc, mvFunc, touchFunc, catFunc
+		5. You can take a look at the fs.c to testing your program
+		6. Compilation command:
+			$ gcc fs.c -o OSfs
+		7. To run the compiled program:
+			$ ./OSfs
+		8. You can use the git web UI in the link above to upload your *.h file
+		
+# Next goal and timeline:
+- (11 Dec 2017) Finish your *.h file, so that i can integrate and do testing
