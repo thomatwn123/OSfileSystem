@@ -3,7 +3,6 @@
 
 
 int main(int argc, char *argv[])	{
-	
 	if (argc != 3) {
 		printf("Invalid argument.\n");
 		return 1;
