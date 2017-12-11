@@ -42,6 +42,7 @@ void printHelp(){
 	printf("- mv\n");
 	printf("- touch <filename>\n");
 	printf("- cat\n");
+	printf("- cp\n");
 	printf("- exit\n");
 }
 
@@ -77,6 +78,9 @@ void callFunc(char *inputCmd){
 		touchFunc(inputCmdArr[1]);
 	}
 	else if(strcmp(inputCmdArr[0], "cat") == 0){
+
+	}
+	else if(strcmp(inputCmdArr[0], "cp") == 0){
 
 	}
 	else{
