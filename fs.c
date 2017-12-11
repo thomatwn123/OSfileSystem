@@ -81,7 +81,7 @@ void callFunc(char *inputCmd){
 
 	}
 	else if(strcmp(inputCmdArr[0], "cp") == 0){
-
+		cpFunc(inputCmdArr[1], inputCmdArr[2]);
 	}
 	else{
 		printHelp();

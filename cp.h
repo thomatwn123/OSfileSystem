@@ -5,14 +5,9 @@
 #include <stdlib.h>
 
 
-int cpFunc(int argc, char *argv[])	{
-	if (argc != 3) {
-		printf("Invalid argument.\n");
-		return 1;
-	}
-
-	FILE *fr = fopen(argv[1], "rb");
-	FILE *fw = fopen(argv[2], "wb");
+int cpFunc(char *argv1, char *argv2){
+	FILE *fr = fopen(argv1, "rb");
+	FILE *fw = fopen(argv2, "wb");
 
 	if (!fr) {
 		printf("Fail to READ file.\n");
@@ -37,7 +32,7 @@ int cpFunc(int argc, char *argv[])	{
 	fclose(fr);
 	fclose(fw);
 
-	printf("Copy \"%s\" to \"%s\".\n", argv[1], argv[2]);
+	printf("Copy \"%s\" to \"%s\".\n", argv1, argv2);
 	
 	return 0;
 }
