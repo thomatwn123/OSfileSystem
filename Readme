@@ -4,7 +4,7 @@ ____  ____    _____ _  _     _____   ____ ___  _ ____  _____  _____ _
 | \_/|\___ |  | |   | || |_/\|  /_   \___ | / /  \___ |  | |  |  /_ | |  ||
 \____/\____/  \_/   \_/\____/\____\  \____//_/   \____/  \_/  \____\\_/  \|
                                                                            
-OS Final Project Readme v1 (12/6/2017)
+OS Final Project Readme v2 (12/11/2017)
 ======================================
 
 # Current work division:
@@ -14,6 +14,7 @@ OS Final Project Readme v1 (12/6/2017)
 	- San		: (mv.h) Rename/move file, git repository
 	- MSG		: (touch.h) Create file
 	- Neil		: (cat.h) Show file content
+	- Yu-Xian	: (cp.h) Copy file
 	
 # Git repository:
 	- Link: https://github.com/git4san/OSfilesystem
@@ -57,3 +58,4 @@ OS Final Project Readme v1 (12/6/2017)
 		
 # Next goal and timeline:
 - (11 Dec 2017) Finish your *.h file, so that i can integrate and do testing
+- (13 Dec 2017) Fix function code to comply with this guidelines
