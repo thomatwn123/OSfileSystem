@@ -1,3 +1,6 @@
+#ifndef ls_h
+#define ls_h
+
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -395,23 +398,24 @@ void scan_dir_entries(int argc, char* argv[])
     }
 }
 
-int main(int argc, char *argv[])
+int lsFunc(int t_argc, char **t_argv)
 {
-    get_opts(argc, argv);
+    get_opts(t_argc, t_argv);
 
     if (t_opts.using_d_opt)
     {
-        display_dir_args(argc, argv);
+        display_dir_args(t_argc, t_argv);
         return EX_OK;
     }
     else
     {
-        if (optind == argc)
+        if (optind == t_argc)
         {
             display_dir_entries(".");
             return EX_OK;
         }
 
-        scan_dir_entries(argc, argv);
+        scan_dir_entries(t_argc, t_argv);
     }
 }
+#endif
