@@ -39,10 +39,10 @@ void printHelp(){
 	printf("Supported commands are as follows:\n");
 	printf("- ls\n");
 	printf("- rm\n");
-	printf("- mv\n");
+	printf("- mv <oldfilename> <newfilename>\n");
 	printf("- touch <filename>\n");
 	printf("- cat\n");
-	printf("- cp\n");
+	printf("- cp <sourcefile> <destinationfile>\n");
 	printf("- exit\n");
 }
 
@@ -72,7 +72,7 @@ void callFunc(char *inputCmd){
 
 	}
 	else if(strcmp(inputCmdArr[0], "mv") == 0){
-
+		mvFunc(inputCmdArr[1], inputCmdArr[2]);
 	}
 	else if(strcmp(inputCmdArr[0], "touch") == 0){
 		touchFunc(inputCmdArr[1]);
