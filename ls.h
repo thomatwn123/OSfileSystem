@@ -17,9 +17,11 @@
 #include <time.h>
 #include <unistd.h>
 
-#define BUF_SZ 1024
+#define BUF_SZ 4096
 
 const char* cur_dir = ".";
+
+int listFiles(int t_argc, char *t_argv[]);
 
 struct opts
 {
@@ -28,6 +30,21 @@ struct opts
     bool using_h_opt;
     bool using_l_opt;
 } t_opts;
+
+/*
+t_argc - Integer, No. of arguments,
+t_argv - Array of Strings representing args (similar like command like args).
+   Ex. : t_args[0] - name of the prog. here it can be 'ls'
+         t_args[1] - {path of a folder} or {ls opts}
+		"ls opts" = {-a, -d, -h -l} 
+
+         so t_argv = "ls . -l"  or "ls -l" or "ls -l -a" 
+*/
+
+int lsFunc(int t_argc, char *t_argv[])
+{
+	listFiles(t_argc, t_argv);
+}
 
 void init_opts()
 {
@@ -39,8 +56,8 @@ void init_opts()
 
 void get_opts(int count, char* args[])
 {
-    int opt;
-
+    int opt = 0;
+    int i = 0;
     init_opts();
 
     static struct option long_opts[] = {
@@ -50,7 +67,9 @@ void get_opts(int count, char* args[])
         { "long list",       optional_argument, NULL, 'l' },
         { NULL,              0,                 NULL,  0  }
     };
-
+   
+    optind = 1; 
+    
     while ((opt = getopt_long(count, args, 
         "adhl", long_opts, NULL)) != -1)
     {
@@ -60,7 +79,7 @@ void get_opts(int count, char* args[])
             case 'd': t_opts.using_d_opt = true; break;
             case 'h': t_opts.using_h_opt = true; break;
             case 'l': t_opts.using_l_opt = true; break;
-            case '?': exit(EX_USAGE);
+            case '?' : t_opts.using_h_opt = true; break;
         }
     }
 }
@@ -136,7 +155,7 @@ void print_time(time_t mod_time)
 
     if (bytes_written <= 0)
     {
-        exit(EX_IOERR);
+        return;
     }
 
     printf("%s", time_buf);
@@ -149,15 +168,16 @@ struct stat get_stats(const char* fname)
     const int bytes_written = snprintf(pbuf, sizeof(pbuf),  
         	"%s/%s", cur_dir, fname);
 
+    memset(&sb, 0, sizeof(struct stat));
     if (bytes_written <= 0)
     {
-        exit(EX_IOERR);
+	return sb;
     }
 
     if (lstat(pbuf, &sb) < 0)
     {   
         perror(pbuf);
-        exit(EX_IOERR);
+	return sb;
     }
 
     return sb;
@@ -170,7 +190,7 @@ int is_dir(const char* fname)
     if (lstat(fname, &sb) < 0)
     {
         perror(fname);
-        exit(EX_IOERR);
+	return 0;
     }
 
     return sb.st_mode & S_IFDIR;
@@ -185,7 +205,7 @@ bool is_in_dir(const char* dir, const char* fname)
     if (!dfd)
     {
         perror(dir);
-        exit(EX_IOERR);
+	return true;
     }
 
     dp = readdir(dfd);
@@ -218,7 +238,7 @@ void print_link(const char* dir, const char* fname)
 
     if (bytes_written <= 0)
     {
-        exit(EX_IOERR);
+	return ;
     }
 
     const ssize_t count = 
@@ -227,7 +247,7 @@ void print_link(const char* dir, const char* fname)
     if (count == -1)
     {
         perror("readlink");
-        exit(EX_IOERR);
+	return ;
     }
 
     link_buf[count] = '\0';
@@ -398,8 +418,9 @@ void scan_dir_entries(int argc, char* argv[])
     }
 }
 
-int lsFunc(int t_argc, char **t_argv)
+int listFiles(int t_argc, char **t_argv)
 {
+    int i = 0;
     get_opts(t_argc, t_argv);
 
     if (t_opts.using_d_opt)
@@ -417,5 +438,7 @@ int lsFunc(int t_argc, char **t_argv)
 
         scan_dir_entries(t_argc, t_argv);
     }
+
+    optind = 1;
 }
 #endif

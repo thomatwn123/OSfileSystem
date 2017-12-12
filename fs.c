@@ -66,7 +66,7 @@ void callFunc(char *inputCmd){
 	}
 
 	if(strcmp(inputCmdArr[0], "ls") == 0){
-		
+		lsFunc(i, inputCmdArr);
 	}
 	else if(strcmp(inputCmdArr[0], "rm") == 0){
 
