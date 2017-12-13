@@ -3,15 +3,15 @@
 
 #include <stdio.h>
 
-void rmFunc()
+void rmFunc(char * file_name)
 {
    int status;
    char file_name[25];
     
 	// enter the file name with location
    
-   printf("Enter the name of file you want to delete\n");
-   gets(file_name);
+ //  printf("Enter the name of file you want to delete\n");
+ //  gets(file_name);
 
    status = remove(file_name);
 
